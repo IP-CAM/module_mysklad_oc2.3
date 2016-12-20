@@ -16,13 +16,21 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
         $this->load->model('setting/setting');
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+            $this->model_setting_setting->editSetting('mysklad_oc23', $this->request->post);
+
+            $this->session->data['success'] = $this->language->get('text_success');
+
+            $this->response->redirect($this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=module', true));
+        }
+
+        /*
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
             $this->request->post['mysklad_oc23_order_date'] = $this->config->get('mysklad_oc23_order_date');
             $this->model_setting_setting->editSetting('mysklad_oc23', $this->request->post);
             $this->session->data['success'] = $this->language->get('text_success');
             $this->redirect($this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'));
         }
-
-        $data['version'] = 'Version 2.3.0.2';
+        */
 
         $data['heading_title'] = $this->language->get('heading_title');
         $data['entry_username'] = $this->language->get('entry_username');
@@ -31,7 +39,7 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
         $data['text_price_default'] = $this->language->get('text_price_default');
         $data['entry_config_price_type'] = $this->language->get('entry_config_price_type');
 
-        //$data['entry_customer_group'] = $this->language->get('entry_customer_group');
+        $data['entry_customer_group'] = $this->language->get('entry_customer_group');
         $data['entry_quantity'] = $this->language->get('entry_quantity');
         $data['entry_priority'] = $this->language->get('entry_priority');
         $data['entry_flush_product'] = $this->language->get('entry_flush_product');
@@ -108,31 +116,24 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
         $data['breadcrumbs'] = array();
 
         $data['breadcrumbs'][] = array(
-            'text'		=> $this->language->get('text_home'),
-            'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-            'separator'	=> false
+            'text' => $this->language->get('text_home'),
+            'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
         );
 
         $data['breadcrumbs'][] = array(
-            'text'		=> $this->language->get('text_module'),
-            'href'		=> $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
-
-            'separator'	=> ' :: '
+            'text' => $this->language->get('text_extension'),
+            'href' => $this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=module', true)
         );
 
         $data['breadcrumbs'][] = array(
-            'text'      => $this->language->get('heading_title'),
-            'href'      => $this->url->link('module/mysklad_oc23', 'token=' . $this->session->data['token'], 'SSL'),
-            'separator' => ' :: '
+            'text' => $this->language->get('heading_title'),
+            'href' => $this->url->link('extension/module/mysklad_oc23', 'token=' . $this->session->data['token'], true)
         );
 
-        $data['token'] = $this->session->data['token'];
 
-        //$data['action'] = HTTPS_SERVER . 'index.php?route=module/mysklad_oc23&token=' . $this->session->data['token'];
-        $data['action'] = $this->url->link('module/mysklad_oc23', 'token=' . $this->session->data['token'], 'SSL');
+        $data['action'] = $this->url->link('extension/module/mysklad_oc23', 'token=' . $this->session->data['token'], true);
 
-        //$data['cancel'] = HTTPS_SERVER . 'index.php?route=extension/mysklad_oc23&token=' . $this->session->data['token'];
-        $data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
+        $data['cancel'] = $this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=module', true);
 
         if (isset($this->request->post['mysklad_oc23_username'])) {
             $data['mysklad_oc23_username'] = $this->request->post['mysklad_oc23_username'];
@@ -170,7 +171,7 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
             if(empty($data['mysklad_oc23_price_type'])) {
                 $data['mysklad_oc23_price_type'][] = array(
                     'keyword'			=> '',
-                    //'customer_group_id'		=> 0,
+                    'customer_group_id'		=> 0,
                     'quantity'			=> 0,
                     'priority'			=> 0
                 );
@@ -288,8 +289,8 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
         }
 
         // Группы
-        //$this->load->model('sale/customer_group');
-        //$data['customer_groups'] = $this->model_sale_customer_group->getCustomerGroups();
+        $this->load->model('customer/customer_group');
+        $data['customer_groups'] = $this->model_customer_customer_group->getCustomerGroups();
 
         $this->load->model('localisation/order_status');
 
@@ -313,16 +314,12 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
 
     private function validate() {
 
-        if (!$this->user->hasPermission('modify', 'module/mysklad_oc23')) {
+        if (!$this->user->hasPermission('modify', 'extension/module/mysklad_oc23')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
 
-        if (!$this->error) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return !$this->error;
+
     }
 
     public function install() {}
