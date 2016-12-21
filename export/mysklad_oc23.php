@@ -52,6 +52,7 @@ foreach ($query->rows as $setting) {
 		$config->set($setting['key'], $setting['value']);
 	} else {
 		$config->set($setting['key'], json_decode($setting['value']));
+		
 	}
 }
 
@@ -150,16 +151,11 @@ $registry->set('user', new User($registry));
 // Event
 $event = new Event($registry);
 $registry->set('event', $event);
-$ev = array();
 
 $query = $db->query("SELECT * FROM " . DB_PREFIX . "event");
 
 foreach ($query->rows as $result) {
-	$ev = array(
-		'trigger'=>$result['trigger'],
-		'action'=>$result['action']
-
-	);
+	$event->register($result['trigger'], new Action ($result['action']));
 }
 
 // Front Controller
@@ -171,19 +167,19 @@ if (isset($request->get['mode']) && $request->get['type'] == 'catalog') {
 
 	switch ($request->get['mode']) {
 		case 'checkauth':
-			$action = new Action('module/mysklad_oc23/modeCheckauth');
+			$action = new Action('extension/module/mysklad_oc23/modeCheckauth');
 			break;
 
 		case 'init':
-			$action = new Action('module/mysklad_oc23/modeCatalogInit');
+			$action = new Action('extension/module/mysklad_oc23/modeCatalogInit');
 			break;
 
 		case 'file':
-			$action = new Action('module/mysklad_oc23/modeFile');
+			$action = new Action('extension/module/mysklad_oc23/modeFile');
 			break;
 
 		case 'import':
-			$action = new Action('module/mysklad_oc23/modeImport');
+			$action = new Action('extension/module/mysklad_oc23/modeImport');
 			break;
 
 		default:
@@ -194,15 +190,15 @@ if (isset($request->get['mode']) && $request->get['type'] == 'catalog') {
 
 	switch ($request->get['mode']) {
 		case 'checkauth':
-			$action = new Action('module/mysklad_oc23/modeCheckauth');
+			$action = new Action('extension/module/mysklad_oc23/modeCheckauth');
 			break;
 
 		case 'init':
-			$action = new Action('module/mysklad_oc23/modeSaleInit');
+			$action = new Action('extension/module/mysklad_oc23/modeSaleInit');
 			break;
 
 		case 'query':
-			$action = new Action('module/mysklad_oc23/modeQueryOrders');
+			$action = new Action('extension/module/mysklad_oc23/modeQueryOrders');
 			break;
 
 		default:
@@ -222,3 +218,4 @@ if (isset($action)) {
 // Output
 $response->output();
 ?>
+
