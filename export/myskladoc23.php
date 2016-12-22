@@ -167,19 +167,19 @@ if (isset($request->get['mode']) && $request->get['type'] == 'catalog') {
 
 	switch ($request->get['mode']) {
 		case 'checkauth':
-			$action = new Action('extension/module/mysklad_oc23/modeCheckauth');
+			$action = new Action('extension/module/myskladoc23/modeCheckauth');
 			break;
 
 		case 'init':
-			$action = new Action('extension/module/mysklad_oc23/modeCatalogInit');
+			$action = new Action('extension/module/myskladoc23/modeCatalogInit');
 			break;
 
 		case 'file':
-			$action = new Action('extension/module/mysklad_oc23/modeFile');
+			$action = new Action('extension/module/myskladoc23/modeFile');
 			break;
 
 		case 'import':
-			$action = new Action('extension/module/mysklad_oc23/modeImport');
+			$action = new Action('extension/module/myskladoc23/modeImport');
 			break;
 
 		default:
@@ -190,15 +190,15 @@ if (isset($request->get['mode']) && $request->get['type'] == 'catalog') {
 
 	switch ($request->get['mode']) {
 		case 'checkauth':
-			$action = new Action('extension/module/mysklad_oc23/modeCheckauth');
+			$action = new Action('extension/module/myskladoc23/modeCheckauth');
 			break;
 
 		case 'init':
-			$action = new Action('extension/module/mysklad_oc23/modeSaleInit');
+			$action = new Action('extension/module/myskladoc23/modeSaleInit');
 			break;
 
 		case 'query':
-			$action = new Action('extension/module/mysklad_oc23/modeQueryOrders');
+			$action = new Action('extension/module/myskladoc23/modeQueryOrders');
 			break;
 
 		default:

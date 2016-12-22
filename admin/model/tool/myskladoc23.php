@@ -1,6 +1,6 @@
 <?php
 
-class ModelToolMysklad_oc23 extends Model {
+class ModelToolMyskladoc23 extends Model {
 
 	private $CATEGORIES = array();
 	private $PROPERTIES = array();
@@ -89,7 +89,7 @@ class ModelToolMysklad_oc23 extends Model {
 						,'Сумма'          => $product['total']
 					);
 					
-					if ($this->config->get('mysklad_oc23_relatedoptions')) {
+					if ($this->config->get('myskladoc23_relatedoptions')) {
 						$this->load->model('module/related_options');
 						if ($this->model_module_related_options->get_product_related_options_use($product['product_id'])) {
 							$order_options = $this->model_sale_order->getOrderOptions($orders_data['order_id'], $product['order_product_id']);
@@ -180,13 +180,13 @@ public function queryOrdersStatus($params){
 	 */
 	public function parseOffers($filename, $config_price_type, $language_id) {
 
-		$importFile = DIR_CACHE . 'mysklad_oc23/' . $filename;
+		$importFile = DIR_CACHE . 'myskladoc23/' . $filename;
 		$xml = simplexml_load_file($importFile);
 		
 		$price_types = array();
 		$config_price_type_main = array();
-		$enable_log = $this->config->get('mysklad_oc23_full_log');
-		$mysklad_oc23_relatedoptions = $this->config->get('mysklad_oc23_relatedoptions');
+		$enable_log = $this->config->get('myskladoc23_full_log');
+		$myskladoc23_relatedoptions = $this->config->get('myskladoc23_relatedoptions');
 
 		$this->load->model('catalog/option');
 
@@ -227,7 +227,7 @@ public function queryOrdersStatus($params){
 				
 				$offer_cnt++;
 				
-				if (!$mysklad_oc23_relatedoptions || $new_product) {
+				if (!$myskladoc23_relatedoptions || $new_product) {
 					
 					$data = array();
 					$data['price'] = 0;
@@ -244,7 +244,7 @@ public function queryOrdersStatus($params){
 					if ($offer->Цены) {
 	
 						// Первая цена по умолчанию - $config_price_type_main
-						if (!$config_price_type_main['keyword']) {
+						if (!(array)$config_price_type_main['keyword']) {
 							$data['price'] = (float)$offer->Цены->Цена->ЦенаЗаЕдиницу;
 						}
 						else {
@@ -299,7 +299,7 @@ public function queryOrdersStatus($params){
 	
 						if (!empty($name_1c) && !empty($value_1c)) {
 							
-							if ($mysklad_oc23_relatedoptions) {
+							if ($myskladoc23_relatedoptions) {
 								$uuid = explode("#", $offer->Ид);
 								if (!isset($char_id) || $char_id != $uuid[1]) {
 									$char_id = $uuid[1];
@@ -335,7 +335,7 @@ public function queryOrdersStatus($params){
 								'product_option_value' => $product_option_value_data
 							);
 							
-							if ($mysklad_oc23_relatedoptions) {
+							if ($myskladoc23_relatedoptions) {
 								
 								if ( !isset($data['relatedoptions'])) {
 									$data['relatedoptions'] = array();
@@ -362,7 +362,7 @@ public function queryOrdersStatus($params){
 					}
 				}
 
-				if (!$mysklad_oc23_relatedoptions || $new_product) {
+				if (!$myskladoc23_relatedoptions || $new_product) {
 					
 					if ($offer->СкидкиНаценки) {
 						$value = array();
@@ -394,7 +394,7 @@ public function queryOrdersStatus($params){
 					}
 				}
 				
-				if (!$mysklad_oc23_relatedoptions || $offer_cnt == count($xml->ПакетПредложений->Предложения->Предложение)
+				if (!$myskladoc23_relatedoptions || $offer_cnt == count($xml->ПакетПредложений->Предложения->Предложение)
 					|| $data['1c_id'] != substr($xml->ПакетПредложений->Предложения->Предложение[$offer_cnt]->Ид, 0, strlen($data['1c_id'])) ) {
 						
 						$this->updateProduct($data, $product_id, $language_id);
@@ -452,10 +452,10 @@ public function queryOrdersStatus($params){
 	 */
 	public function parseImport($filename, $language_id) {
 
-		$importFile = DIR_CACHE . 'mysklad_oc23/' . $filename;
+		$importFile = DIR_CACHE . 'myskladoc23/' . $filename;
 
-		$enable_log = $this->config->get('mysklad_oc23_full_log');
-		$apply_watermark = $this->config->get('mysklad_oc23_apply_watermark');
+		$enable_log = $this->config->get('myskladoc23_full_log');
+		$apply_watermark = $this->config->get('myskladoc23_apply_watermark');
 
 		$xml = simplexml_load_file($importFile);
 		$data = array();
@@ -983,7 +983,7 @@ public function queryOrdersStatus($params){
 		}
 		else {
 
-			if ($this->config->get('mysklad_oc23_dont_use_artsync')) {
+			if ($this->config->get('myskladoc23_dont_use_artsync')) {
 				$this->load->model('catalog/product');
 				$product_id =	$this->model_catalog_product->addProduct($data);
 			} else {
@@ -1026,7 +1026,7 @@ public function queryOrdersStatus($params){
 	private function updateProduct($product, $product_id = false, $language_id) {
 
 		// Проверяем что обновлять?
-		if ($this->config->get('mysklad_oc23_relatedoptions')) {
+		if ($this->config->get('myskladoc23_relatedoptions')) {
 			if ($product_id == false) {
 				$this->setProduct($product, $language_id);
 				return;
@@ -1141,7 +1141,7 @@ public function queryOrdersStatus($params){
 	 */
 	private function getProductIdBy1CProductId($product_id) {
 
-		$query = $this->db->query('SELECT product_id FROM ' . DB_PREFIX . 'product_to_1c WHERE `1c_id` = "' . $product_id . '"');
+		$query = $this->db->query('SELECT product_id FROM ' . DB_PREFIX . 'product_to_1c WHERE `1c_id` = "' . (int)$product_id . '"');
 
 		if ($query->num_rows) {
 			return $query->row['product_id'];
@@ -1170,7 +1170,7 @@ public function queryOrdersStatus($params){
 	private function applyWatermark($filename) {
 		if (!empty($filename)) {
 			$info = pathinfo($filename);
-			$wmfile = DIR_IMAGE . $this->config->get('mysklad_oc23_watermark');
+			$wmfile = DIR_IMAGE . $this->config->get('myskladoc23_watermark');
 			if (is_file($wmfile)) {
 				$extension = $info['extension'];
 				$minfo = getimagesize($wmfile);
@@ -1247,7 +1247,7 @@ public function queryOrdersStatus($params){
 	 */
 	public function flushDb($params) {
 
-		$enable_log = $this->config->get('mysklad_oc23_full_log');
+		$enable_log = $this->config->get('myskladoc23_full_log');
 		// Удаляем товары
 		if ($params['product']) {
 			if ($enable_log)
@@ -1286,7 +1286,7 @@ public function queryOrdersStatus($params){
 			if ($enable_log)
 				$this->log->write('TRUNCATE TABLE `' . DB_PREFIX . 'product_to_1c`');
 				
-			if ($this->config->get('mysklad_oc23_relatedoptions'))	{
+			if ($this->config->get('myskladoc23_relatedoptions'))	{
 				$this->db->query('TRUNCATE TABLE `' . DB_PREFIX . 'relatedoptions_to_char`');
 				if ($enable_log) $this->log->write('TRUNCATE TABLE `' . DB_PREFIX . 'relatedoptions_to_char`');
 				
@@ -1462,3 +1462,4 @@ public function queryOrdersStatus($params){
 	}
 
 }
+

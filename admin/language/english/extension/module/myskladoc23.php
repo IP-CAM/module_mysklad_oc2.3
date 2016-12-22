@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']	= 'Exchange 1C v8.x';
+$_['heading_title']	= 'Exchange MySklad';
 
 // Text
 $_['text_module']		= 'Modules';

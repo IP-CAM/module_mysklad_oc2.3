@@ -42,17 +42,17 @@ error_reporting(E_ALL ^E_NOTICE);
             <table class="form">
               <tr>
                 <td><?php echo $entry_username; ?></td>
-                <td><input name="mysklad_oc23_username" type="text" value="<?php echo $mysklad_oc23_username; ?>" /></td>
+                <td><input name="myskladoc23_username" type="text" value="<?php echo $myskladoc23_username; ?>" /></td>
               </tr>
               <tr>
                 <td><?php echo $entry_password; ?></td>
-                <td><input name="mysklad_oc23_password" type="password" value="<?php echo $mysklad_oc23_password; ?>" /></td>
+                <td><input name="myskladoc23_password" type="password" value="<?php echo $myskladoc23_password; ?>" /></td>
               </tr>
 
               <tr>
                 <td><?php echo $entry_status; ?></td>
-                <td><select name="mysklad_oc23_status">
-                    <?php if ($mysklad_oc23_status) { ?>
+                <td><select name="myskladoc23_status">
+                    <?php if ($myskladoc23_status) { ?>
                     <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
                     <option value="0"><?php echo $text_disabled; ?></option>
                     <?php } else { ?>
@@ -65,7 +65,7 @@ error_reporting(E_ALL ^E_NOTICE);
               <tr>
                 <td><?php echo $entry_allow_ip; ?></td>
                 <td>
-                  <textarea name="mysklad_oc23_allow_ip" style="width: 200px; height: 50px;"><?php echo $mysklad_oc23_allow_ip; ?></textarea>
+                  <textarea name="myskladoc23_allow_ip" style="width: 200px; height: 50px;"><?php echo $myskladoc23_allow_ip; ?></textarea>
                 </td>
               </tr>
             </table>
@@ -73,7 +73,7 @@ error_reporting(E_ALL ^E_NOTICE);
 
           <div id="tab-product">
 
-            <table id="mysklad_oc23_price_type_id" class="list" style="width: auto">
+            <table id="myskladoc23_price_type_id" class="list" style="width: auto">
               <thead>
               <tr>
                 <td class="left"><?php echo $entry_config_price_type; ?></td>
@@ -85,19 +85,19 @@ error_reporting(E_ALL ^E_NOTICE);
               </thead>
               <tbody>
               <?php $price_row = 0; ?>
-              <?php foreach ($mysklad_oc23_price_type as $obj) { ?>
+              <?php foreach ($myskladoc23_price_type as $obj) { ?>
               <?php if ($price_row == 0) {?>
-              <tr id="mysklad_oc23_price_type_row<?php echo $price_row; ?>">
-              <td class="left"><input type="text" name="mysklad_oc23_price_type[<?php echo $price_row; ?>][keyword]" value="<?php echo $obj['keyword']; ?>" /></td>
-              <td class="left"><?php  echo $text_price_default; ?><input type="hidden" name="mysklad_oc23_price_type[<?php echo $price_row; ?>][customer_group_id]" value="0" /></td>
-              <td class="center">-<input type="hidden" name="mysklad_oc23_price_type[<?php echo $price_row; ?>][quantity]" value="0" /></td>
-              <td class="center">-<input type="hidden" name="mysklad_oc23_price_type[<?php echo $price_row; ?>][priority]" value="0" /></td>
+              <tr id="myskladoc23_price_type_row<?php echo $price_row; ?>">
+              <td class="left"><input type="text" name="myskladoc23_price_type[<?php echo $price_row; ?>][keyword]" value="<?php echo $obj['keyword']; ?>" /></td>
+              <td class="left"><?php  echo $text_price_default; ?><input type="hidden" name="myskladoc23_price_type[<?php echo $price_row; ?>][customer_group_id]" value="0" /></td>
+              <td class="center">-<input type="hidden" name="myskladoc23_price_type[<?php echo $price_row; ?>][quantity]" value="0" /></td>
+              <td class="center">-<input type="hidden" name="myskladoc23_price_type[<?php echo $price_row; ?>][priority]" value="0" /></td>
               <td class="left">&nbsp;</td>
               </tr>
               <?php } else { ?>
-              <tr id="mysklad_oc23_price_type_row<?php echo $price_row; ?>">
-                <td class="left"><input type="text" name="mysklad_oc23_price_type[<?php echo $price_row; ?>][keyword]" value="<?php echo $obj['keyword']; ?>" /></td>
-                <td class="left"><select name="mysklad_oc23_price_type[<?php echo $price_row; ?>][customer_group_id]">
+              <tr id="myskladoc23_price_type_row<?php echo $price_row; ?>">
+                <td class="left"><input type="text" name="myskladoc23_price_type[<?php echo $price_row; ?>][keyword]" value="<?php echo $obj['keyword']; ?>" /></td>
+                <td class="left"><select name="myskladoc23_price_type[<?php echo $price_row; ?>][customer_group_id]">
                     <?php foreach ($customer_groups as $customer_group) { ?>
                     <?php if ($customer_group['customer_group_id'] == $obj['customer_group_id']) { ?>
                     <option value="<?php echo $customer_group['customer_group_id']; ?>" selected="selected"><?php echo $customer_group['name']; ?></option>
@@ -106,9 +106,9 @@ error_reporting(E_ALL ^E_NOTICE);
                     <?php } ?>
                     <?php } ?>
                   </select></td>
-                <td class="center"><input type="text" name="mysklad_oc23_price_type[<?php echo $price_row; ?>][quantity]" value="<?php echo $obj['quantity']; ?>" size="2" /></td>
-                <td class="center"><input type="text" name="mysklad_oc23_price_type[<?php echo $price_row; ?>][priority]" value="<?php echo $obj['priority']; ?>" size="2" /></td>
-                <td class="center"><a onclick="$('#mysklad_oc23_price_type_row<?php echo $price_row; ?>').remove();" class="button"><?php echo $button_remove; ?></a></td>
+                <td class="center"><input type="text" name="myskladoc23_price_type[<?php echo $price_row; ?>][quantity]" value="<?php echo $obj['quantity']; ?>" size="2" /></td>
+                <td class="center"><input type="text" name="myskladoc23_price_type[<?php echo $price_row; ?>][priority]" value="<?php echo $obj['priority']; ?>" size="2" /></td>
+                <td class="center"><a onclick="$('#myskladoc23_price_type_row<?php echo $price_row; ?>').remove();" class="button"><?php echo $button_remove; ?></a></td>
               </tr>
               <?php } ?>
               <?php $price_row++; ?>
@@ -124,66 +124,66 @@ error_reporting(E_ALL ^E_NOTICE);
 
             <table class="form">
               <tr>
-                <td><label for="mysklad_oc23_flush_product"><?php echo $entry_flush_product; ?></label></td>
+                <td><label for="myskladoc23_flush_product"><?php echo $entry_flush_product; ?></label></td>
                 <td>
-                  <input type="checkbox" value="1" id="mysklad_oc23_flush_product" name="mysklad_oc23_flush_product" <?php echo ($mysklad_oc23_flush_product == 1)? 'checked' : ''; ?>>
+                  <input type="checkbox" value="1" id="myskladoc23_flush_product" name="myskladoc23_flush_product" <?php echo ($myskladoc23_flush_product == 1)? 'checked' : ''; ?>>
                 </td>
               </tr>
 
               <tr>
-                <td><label for="mysklad_oc23_flush_category"><?php echo $entry_flush_category; ?></label></td>
+                <td><label for="myskladoc23_flush_category"><?php echo $entry_flush_category; ?></label></td>
                 <td>
-                  <input type="checkbox" value="1" id="mysklad_oc23_flush_category" name="mysklad_oc23_flush_category" <?php echo ($mysklad_oc23_flush_category == 1)? 'checked' : ''; ?>>
+                  <input type="checkbox" value="1" id="myskladoc23_flush_category" name="myskladoc23_flush_category" <?php echo ($myskladoc23_flush_category == 1)? 'checked' : ''; ?>>
                 </td>
               </tr>
 
               <tr>
-                <td><label for="mysklad_oc23_flush_manufacturer"><?php echo $entry_flush_manufacturer; ?></label></td>
+                <td><label for="myskladoc23_flush_manufacturer"><?php echo $entry_flush_manufacturer; ?></label></td>
                 <td>
-                  <input type="checkbox" value="1" id="mysklad_oc23_flush_manufacturer" name="mysklad_oc23_flush_manufacturer" <?php echo ($mysklad_oc23_flush_manufacturer == 1)? 'checked' : ''; ?>>
+                  <input type="checkbox" value="1" id="myskladoc23_flush_manufacturer" name="myskladoc23_flush_manufacturer" <?php echo ($myskladoc23_flush_manufacturer == 1)? 'checked' : ''; ?>>
                 </td>
               </tr>
 
               <tr>
-                <td><label for="mysklad_oc23_flush_attribute"><?php echo $entry_flush_attribute; ?></label></td>
+                <td><label for="myskladoc23_flush_attribute"><?php echo $entry_flush_attribute; ?></label></td>
                 <td>
-                  <input type="checkbox" value="1" id="mysklad_oc23_flush_attribute" name="mysklad_oc23_flush_attribute" <?php echo ($mysklad_oc23_flush_attribute == 1)? 'checked' : ''; ?>>
+                  <input type="checkbox" value="1" id="myskladoc23_flush_attribute" name="myskladoc23_flush_attribute" <?php echo ($myskladoc23_flush_attribute == 1)? 'checked' : ''; ?>>
                 </td>
               </tr>
 
               <tr>
-                <td><label for="mysklad_oc23_flush_quantity"><?php echo $entry_flush_quantity; ?></label></td>
+                <td><label for="myskladoc23_flush_quantity"><?php echo $entry_flush_quantity; ?></label></td>
                 <td>
-                  <input type="checkbox" value="1" id="mysklad_oc23_flush_quantity" name="mysklad_oc23_flush_quantity" <?php echo ($mysklad_oc23_flush_quantity == 1)? 'checked' : ''; ?>>
+                  <input type="checkbox" value="1" id="myskladoc23_flush_quantity" name="myskladoc23_flush_quantity" <?php echo ($myskladoc23_flush_quantity == 1)? 'checked' : ''; ?>>
                 </td>
               </tr>
 
               <tr>
-                <td><label for="mysklad_oc23_fill_parent_cats"><?php echo $entry_fill_parent_cats; ?></label></td>
+                <td><label for="myskladoc23_fill_parent_cats"><?php echo $entry_fill_parent_cats; ?></label></td>
                 <td>
-                  <input type="checkbox" value="1" id="mysklad_oc23_fill_parent_cats" name="mysklad_oc23_fill_parent_cats" <?php echo ($mysklad_oc23_fill_parent_cats == 1)? 'checked' : ''; ?>>
+                  <input type="checkbox" value="1" id="myskladoc23_fill_parent_cats" name="myskladoc23_fill_parent_cats" <?php echo ($myskladoc23_fill_parent_cats == 1)? 'checked' : ''; ?>>
                 </td>
               </tr>
 
               <tr>
-                <td><label for="mysklad_oc23_seo_url"><?php echo $entry_seo_url; ?></label></td>
+                <td><label for="myskladoc23_seo_url"><?php echo $entry_seo_url; ?></label></td>
                 <td>
-                  <input type="checkbox" value="1" id="mysklad_oc23_seo_url" name="mysklad_oc23_seo_url" <?php echo ($mysklad_oc23_seo_url == 1)? 'checked' : ''; ?>>
+                  <input type="checkbox" value="1" id="myskladoc23_seo_url" name="myskladoc23_seo_url" <?php echo ($myskladoc23_seo_url == 1)? 'checked' : ''; ?>>
                 </td>
               </tr>
 
               <tr>
-                <td><label for="mysklad_oc23_relatedoptions"><?php echo $entry_relatedoptions; ?></label></td>
+                <td><label for="myskladoc23_relatedoptions"><?php echo $entry_relatedoptions; ?></label></td>
                 <td>
-                  <input type="checkbox" value="1" id="mysklad_oc23_relatedoptions" name="mysklad_oc23_relatedoptions" <?php echo ($mysklad_oc23_relatedoptions == 1)? 'checked' : ''; ?>>
+                  <input type="checkbox" value="1" id="myskladoc23_relatedoptions" name="myskladoc23_relatedoptions" <?php echo ($myskladoc23_relatedoptions == 1)? 'checked' : ''; ?>>
                   <span class="help"><?php echo $entry_relatedoptions_help; ?></span>
                 </td>
               </tr>
 
               <tr>
-                <td><label for="mysklad_oc23_full_log"><?php echo $entry_full_log; ?></label></td>
+                <td><label for="myskladoc23_full_log"><?php echo $entry_full_log; ?></label></td>
                 <td>
-                  <input type="checkbox" value="1" id="mysklad_oc23_full_log" name="mysklad_oc23_full_log" <?php echo ($mysklad_oc23_full_log == 1)? 'checked' : ''; ?>>
+                  <input type="checkbox" value="1" id="myskladoc23_full_log" name="myskladoc23_full_log" <?php echo ($myskladoc23_full_log == 1)? 'checked' : ''; ?>>
                 </td>
               </tr>
 
@@ -196,10 +196,10 @@ error_reporting(E_ALL ^E_NOTICE);
               <tr>
                 <td><?php echo $entry_order_status_to_exchange; ?></td>
                 <td>
-                  <select name="mysklad_oc23_order_status_to_exchange">
-                    <option value="0" <?php echo ($mysklad_oc23_order_status_to_exchange == 0)? 'selected' : '' ;?>><?php echo $entry_order_status_to_exchange_not; ?></option>
+                  <select name="myskladoc23_order_status_to_exchange">
+                    <option value="0" <?php echo ($myskladoc23_order_status_to_exchange == 0)? 'selected' : '' ;?>><?php echo $entry_order_status_to_exchange_not; ?></option>
                     <?php foreach ($order_statuses as $order_status) { ?>
-                    <option value="<?php echo $order_status['order_status_id'];?>" <?php echo ($mysklad_oc23_order_status_to_exchange == $order_status['order_status_id'])? 'selected' : '' ;?>><?php echo $order_status['name']; ?></option>
+                    <option value="<?php echo $order_status['order_status_id'];?>" <?php echo ($myskladoc23_order_status_to_exchange == $order_status['order_status_id'])? 'selected' : '' ;?>><?php echo $order_status['name']; ?></option>
                     <?php } ?>
                   </select>
                 </td>
@@ -208,25 +208,25 @@ error_reporting(E_ALL ^E_NOTICE);
               <tr>
                 <td><?php echo $entry_order_status; ?></td>
                 <td>
-                  <select name="mysklad_oc23_order_status">
+                  <select name="myskladoc23_order_status">
                     <?php foreach ($order_statuses as $order_status) { ?>
-                    <option value="<?php echo $order_status['order_status_id'];?>" <?php echo ($mysklad_oc23_order_status == $order_status['order_status_id'])? 'selected' : '' ;?>><?php echo $order_status['name']; ?></option>
+                    <option value="<?php echo $order_status['order_status_id'];?>" <?php echo ($myskladoc23_order_status == $order_status['order_status_id'])? 'selected' : '' ;?>><?php echo $order_status['name']; ?></option>
                     <?php } ?>
                   </select>
                 </td>
               </tr>
 
               <tr>
-                <td><label for="mysklad_oc23_order_currency"><?php echo $entry_order_currency; ?></label></td>
+                <td><label for="myskladoc23_order_currency"><?php echo $entry_order_currency; ?></label></td>
                 <td>
-                  <input type="text" name="mysklad_oc23_order_currency" value="<?php echo $mysklad_oc23_order_currency; ?>">
+                  <input type="text" name="myskladoc23_order_currency" value="<?php echo $myskladoc23_order_currency; ?>">
                 </td>
               </tr>
 
               <tr>
-                <td><label for="mysklad_oc23_order_notify"><?php echo $entry_order_notify; ?></label></td>
+                <td><label for="myskladoc23_order_notify"><?php echo $entry_order_notify; ?></label></td>
                 <td>
-                  <input type="checkbox" value="1" id="mysklad_oc23_order_notify" name="mysklad_oc23_order_notify" <?php echo ($mysklad_oc23_order_notify == 1)? 'checked' : ''; ?>>
+                  <input type="checkbox" value="1" id="myskladoc23_order_notify" name="myskladoc23_order_notify" <?php echo ($myskladoc23_order_notify == 1)? 'checked' : ''; ?>>
                 </td>
               </tr>
 
@@ -266,7 +266,7 @@ error_reporting(E_ALL ^E_NOTICE);
 
 <script type="text/javascript"><!--
   new AjaxUpload('#button-upload', {
-    action: 'index.php?route=extension/module/mysklad_oc23/manualImport&token=<?php echo $token; ?>',
+    action: 'index.php?route=extension/module/myskladoc23/manualImport&token=<?php echo $token; ?>',
     name: 'file',
     autoSubmit: true,
     responseType: 'json',
@@ -293,19 +293,19 @@ error_reporting(E_ALL ^E_NOTICE);
 
   function addConfigPriceType() {
     html  = '';
-    html += '  <tr id="mysklad_oc23_price_type_row' + price_row + '">';
-    html += '    <td class="left"><input type="text" name="mysklad_oc23_price_type[' + price_row + '][keyword]" value="" /></td>';
-    html += '    <td class="left"><select name="mysklad_oc23_price_type[' + price_row + '][customer_group_id]">';
+    html += '  <tr id="myskladoc23_price_type_row' + price_row + '">';
+    html += '    <td class="left"><input type="text" name="myskladoc23_price_type[' + price_row + '][keyword]" value="" /></td>';
+    html += '    <td class="left"><select name="myskladoc23_price_type[' + price_row + '][customer_group_id]">';
   <?php foreach ($customer_groups as $customer_group) { ?>
       html += '      <option value="<?php echo $customer_group['customer_group_id']; ?>"><?php echo $customer_group['name']; ?></option>';
     <?php } ?>
     html += '    </select></td>';
-    html += '    <td class="center"><input type="text" name="mysklad_oc23_price_type[' + price_row + '][quantity]" value="0" size="2" /></td>';
-    html += '    <td class="center"><input type="text" name="mysklad_oc23_price_type[' + price_row + '][priority]" value="0" size="2" /></td>';
-    html += '    <td class="center"><a onclick="$(\'#mysklad_oc23_price_type_row' + price_row + '\').remove();" class="button"><?php echo $button_remove; ?></a></td>';
+    html += '    <td class="center"><input type="text" name="myskladoc23_price_type[' + price_row + '][quantity]" value="0" size="2" /></td>';
+    html += '    <td class="center"><input type="text" name="myskladoc23_price_type[' + price_row + '][priority]" value="0" size="2" /></td>';
+    html += '    <td class="center"><a onclick="$(\'#myskladoc23_price_type_row' + price_row + '\').remove();" class="button"><?php echo $button_remove; ?></a></td>';
     html += '  </tr>';
 
-    $('#mysklad_oc23_price_type_id tfoot').before(html);
+    $('#myskladoc23_price_type_id tfoot').before(html);
 
     $('#config_price_type_row' + price_row + ' .date').datepicker({dateFormat: 'yy-mm-dd'});
     price_row++;

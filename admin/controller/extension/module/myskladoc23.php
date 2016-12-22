@@ -7,7 +7,7 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
 
     public function index() {
 
-        $this->load->language('extension/module/mysklad_oc23');
+        $this->load->language('extension/module/myskladoc23');
         $this->load->model('tool/image');
 
         //$this->document->title = $this->language->get('heading_title');
@@ -16,8 +16,8 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
         $this->load->model('setting/setting');
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-            $this->request->post['mysklad_oc23_order_date'] = $this->config->get('mysklad_oc23_order_date');
-            $this->model_setting_setting->editSetting('mysklad_oc23', $this->request->post);
+            $this->request->post['myskladoc23_order_date'] = $this->config->get('myskladoc23_order_date');
+            $this->model_setting_setting->editSetting('myskladoc23', $this->request->post);
             $this->session->data['success'] = $this->language->get('text_success');
             $this->response->redirect($this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=module', true));
         }
@@ -89,18 +89,18 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
             $data['error_image'] = '';
         }
 
-        if (isset($this->error['mysklad_oc23_username'])) {
-            $data['error_mysklad_oc23_username'] = $this->error['mysklad_oc23_username'];
+        if (isset($this->error['myskladoc23_username'])) {
+            $data['error_myskladoc23_username'] = $this->error['myskladoc23_username'];
         }
         else {
-            $data['error_mysklad_oc23_username'] = '';
+            $data['error_myskladoc23_username'] = '';
         }
 
-        if (isset($this->error['mysklad_oc23_password'])) {
-            $data['error_mysklad_oc23_password'] = $this->error['mysklad_oc23_password'];
+        if (isset($this->error['myskladoc23_password'])) {
+            $data['error_myskladoc23_password'] = $this->error['myskladoc23_password'];
         }
         else {
-            $data['error_mysklad_oc23_password'] = '';
+            $data['error_myskladoc23_password'] = '';
         }
 
         $data['breadcrumbs'] = array();
@@ -117,49 +117,49 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
 
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('heading_title'),
-            'href' => $this->url->link('extension/module/mysklad_oc23', 'token=' . $this->session->data['token'], true)
+            'href' => $this->url->link('extension/module/myskladoc23', 'token=' . $this->session->data['token'], true)
         );
         $data['token'] = $this->session->data['token'];
 
-        $data['action'] = $this->url->link('extension/module/mysklad_oc23', 'token=' . $this->session->data['token'], true);
+        $data['action'] = $this->url->link('extension/module/myskladoc23', 'token=' . $this->session->data['token'], true);
 
         $data['cancel'] = $this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=module', true);
 
-        if (isset($this->request->post['mysklad_oc23_username'])) {
-            $data['mysklad_oc23_username'] = $this->request->post['mysklad_oc23_username'];
+        if (isset($this->request->post['myskladoc23_username'])) {
+            $data['myskladoc23_username'] = $this->request->post['myskladoc23_username'];
         }
         else {
-            $data['mysklad_oc23_username'] = $this->config->get('mysklad_oc23_username');
+            $data['myskladoc23_username'] = $this->config->get('myskladoc23_username');
         }
 
-        if (isset($this->request->post['mysklad_oc23_password'])) {
-            $data['mysklad_oc23_password'] = $this->request->post['mysklad_oc23_password'];
+        if (isset($this->request->post['myskladoc23_password'])) {
+            $data['myskladoc23_password'] = $this->request->post['myskladoc23_password'];
         }
         else {
-            $data['mysklad_oc23_password'] = $this->config->get('mysklad_oc23_password');
+            $data['myskladoc23_password'] = $this->config->get('myskladoc23_password');
         }
 
-        if (isset($this->request->post['mysklad_oc23_allow_ip'])) {
-            $data['mysklad_oc23_allow_ip'] = $this->request->post['mysklad_oc23_allow_ip'];
+        if (isset($this->request->post['myskladoc23_allow_ip'])) {
+            $data['myskladoc23_allow_ip'] = $this->request->post['myskladoc23_allow_ip'];
         }
         else {
-            $data['mysklad_oc23_allow_ip'] = $this->config->get('mysklad_oc23_allow_ip');
+            $data['myskladoc23_allow_ip'] = $this->config->get('myskladoc23_allow_ip');
         }
 
-        if (isset($this->request->post['mysklad_oc23_status'])) {
-            $data['mysklad_oc23_status'] = $this->request->post['mysklad_oc23_status'];
+        if (isset($this->request->post['myskladoc23_status'])) {
+            $data['myskladoc23_status'] = $this->request->post['myskladoc23_status'];
         }
         else {
-            $data['mysklad_oc23_status'] = $this->config->get('mysklad_oc23_status');
+            $data['myskladoc23_status'] = $this->config->get('myskladoc23_status');
         }
 
-        if (isset($this->request->post['mysklad_oc23_price_type'])) {
-            $data['mysklad_oc23_price_type'] = $this->request->post['mysklad_oc23_price_type'];
+        if (isset($this->request->post['myskladoc23_price_type'])) {
+            $data['myskladoc23_price_type'] = $this->request->post['myskladoc23_price_type'];
         }
         else {
-            $data['mysklad_oc23_price_type'] = $this->config->get('mysklad_oc23_price_type');
-            if(empty($data['mysklad_oc23_price_type'])) {
-                $data['mysklad_oc23_price_type'][] = array(
+            $data['myskladoc23_price_type'] = $this->config->get('myskladoc23_price_type');
+            if(empty($data['myskladoc23_price_type'])) {
+                $data['myskladoc23_price_type'][] = array(
                     'keyword'           => '',
                     'customer_group_id'     => 0,
                     'quantity'          => 0,
@@ -168,114 +168,114 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
             }
         }
 
-        if (isset($this->request->post['mysklad_oc23_flush_product'])) {
-            $data['mysklad_oc23_flush_product'] = $this->request->post['mysklad_oc23_flush_product'];
+        if (isset($this->request->post['myskladoc23_flush_product'])) {
+            $data['myskladoc23_flush_product'] = $this->request->post['myskladoc23_flush_product'];
         }
         else {
-            $data['mysklad_oc23_flush_product'] = $this->config->get('mysklad_oc23_flush_product');
+            $data['myskladoc23_flush_product'] = $this->config->get('myskladoc23_flush_product');
         }
 
-        if (isset($this->request->post['mysklad_oc23_flush_category'])) {
-            $data['mysklad_oc23_flush_category'] = $this->request->post['mysklad_oc23_flush_category'];
+        if (isset($this->request->post['myskladoc23_flush_category'])) {
+            $data['myskladoc23_flush_category'] = $this->request->post['myskladoc23_flush_category'];
         }
         else {
-            $data['mysklad_oc23_flush_category'] = $this->config->get('mysklad_oc23_flush_category');
+            $data['myskladoc23_flush_category'] = $this->config->get('myskladoc23_flush_category');
         }
 
-        if (isset($this->request->post['mysklad_oc23_flush_manufacturer'])) {
-            $data['mysklad_oc23_flush_manufacturer'] = $this->request->post['mysklad_oc23_flush_manufacturer'];
+        if (isset($this->request->post['myskladoc23_flush_manufacturer'])) {
+            $data['myskladoc23_flush_manufacturer'] = $this->request->post['myskladoc23_flush_manufacturer'];
         }
         else {
-            $data['mysklad_oc23_flush_manufacturer'] = $this->config->get('mysklad_oc23_flush_manufacturer');
+            $data['myskladoc23_flush_manufacturer'] = $this->config->get('myskladoc23_flush_manufacturer');
         }
 
-        if (isset($this->request->post['mysklad_oc23_flush_quantity'])) {
-            $data['mysklad_oc23_flush_quantity'] = $this->request->post['mysklad_oc23_flush_quantity'];
+        if (isset($this->request->post['myskladoc23_flush_quantity'])) {
+            $data['myskladoc23_flush_quantity'] = $this->request->post['myskladoc23_flush_quantity'];
         }
         else {
-            $data['mysklad_oc23_flush_quantity'] = $this->config->get('mysklad_oc23_flush_quantity');
+            $data['myskladoc23_flush_quantity'] = $this->config->get('myskladoc23_flush_quantity');
         }
 
-        if (isset($this->request->post['mysklad_oc23_flush_attribute'])) {
-            $data['mysklad_oc23_flush_attribute'] = $this->request->post['mysklad_oc23_flush_attribute'];
+        if (isset($this->request->post['myskladoc23_flush_attribute'])) {
+            $data['myskladoc23_flush_attribute'] = $this->request->post['myskladoc23_flush_attribute'];
         }
         else {
-            $data['mysklad_oc23_flush_attribute'] = $this->config->get('mysklad_oc23_flush_attribute');
+            $data['myskladoc23_flush_attribute'] = $this->config->get('myskladoc23_flush_attribute');
         }
 
-        if (isset($this->request->post['mysklad_oc23_fill_parent_cats'])) {
-            $data['mysklad_oc23_fill_parent_cats'] = $this->request->post['mysklad_oc23_fill_parent_cats'];
+        if (isset($this->request->post['myskladoc23_fill_parent_cats'])) {
+            $data['myskladoc23_fill_parent_cats'] = $this->request->post['myskladoc23_fill_parent_cats'];
         }
         else {
-            $data['mysklad_oc23_fill_parent_cats'] = $this->config->get('mysklad_oc23_fill_parent_cats');
+            $data['myskladoc23_fill_parent_cats'] = $this->config->get('myskladoc23_fill_parent_cats');
         }
 
-        if (isset($this->request->post['mysklad_oc23_relatedoptions'])) {
-            $data['mysklad_oc23_relatedoptions'] = $this->request->post['mysklad_oc23_relatedoptions'];
+        if (isset($this->request->post['myskladoc23_relatedoptions'])) {
+            $data['myskladoc23_relatedoptions'] = $this->request->post['myskladoc23_relatedoptions'];
         } else {
-            $data['mysklad_oc23_relatedoptions'] = $this->config->get('mysklad_oc23_relatedoptions');
+            $data['myskladoc23_relatedoptions'] = $this->config->get('myskladoc23_relatedoptions');
         }
-        if (isset($this->request->post['mysklad_oc23_order_status_to_exchange'])) {
-            $data['mysklad_oc23_order_status_to_exchange'] = $this->request->post['mysklad_oc23_order_status_to_exchange'];
+        if (isset($this->request->post['myskladoc23_order_status_to_exchange'])) {
+            $data['myskladoc23_order_status_to_exchange'] = $this->request->post['myskladoc23_order_status_to_exchange'];
         } else {
-            $data['mysklad_oc23_order_status_to_exchange'] = $this->config->get('mysklad_oc23_order_status_to_exchange');
+            $data['myskladoc23_order_status_to_exchange'] = $this->config->get('myskladoc23_order_status_to_exchange');
         }
 
-        if (isset($this->request->post['mysklad_oc23_seo_url'])) {
-            $data['mysklad_oc23_seo_url'] = $this->request->post['mysklad_oc23_seo_url'];
+        if (isset($this->request->post['myskladoc23_seo_url'])) {
+            $data['myskladoc23_seo_url'] = $this->request->post['myskladoc23_seo_url'];
         }
         else {
-            $data['mysklad_oc23_seo_url'] = $this->config->get('mysklad_oc23_seo_url');
+            $data['myskladoc23_seo_url'] = $this->config->get('myskladoc23_seo_url');
         }
 
-        if (isset($this->request->post['mysklad_oc23_full_log'])) {
-            $data['mysklad_oc23_full_log'] = $this->request->post['mysklad_oc23_full_log'];
+        if (isset($this->request->post['myskladoc23_full_log'])) {
+            $data['myskladoc23_full_log'] = $this->request->post['myskladoc23_full_log'];
         }
         else {
-            $data['mysklad_oc23_full_log'] = $this->config->get('mysklad_oc23_full_log');
+            $data['myskladoc23_full_log'] = $this->config->get('myskladoc23_full_log');
         }
 
-        if (isset($this->request->post['mysklad_oc23_apply_watermark'])) {
-            $data['mysklad_oc23_apply_watermark'] = $this->request->post['mysklad_oc23_apply_watermark'];
+        if (isset($this->request->post['myskladoc23_apply_watermark'])) {
+            $data['myskladoc23_apply_watermark'] = $this->request->post['myskladoc23_apply_watermark'];
         }
         else {
-            $data['mysklad_oc23_apply_watermark'] = $this->config->get('mysklad_oc23_apply_watermark');
+            $data['myskladoc23_apply_watermark'] = $this->config->get('myskladoc23_apply_watermark');
         }
 
-        if (isset($this->request->post['mysklad_oc23_watermark'])) {
-            $data['mysklad_oc23_watermark'] = $this->request->post['mysklad_oc23_watermark'];
+        if (isset($this->request->post['myskladoc23_watermark'])) {
+            $data['myskladoc23_watermark'] = $this->request->post['myskladoc23_watermark'];
         }
         else {
-            $data['mysklad_oc23_watermark'] = $this->config->get('mysklad_oc23_watermark');
+            $data['myskladoc23_watermark'] = $this->config->get('myskladoc23_watermark');
         }
 
-        if (isset($data['mysklad_oc23_watermark'])) {
+        if (isset($data['myskladoc23_watermark'])) {
 
-            $data['thumb'] = $this->model_tool_image->resize($data['mysklad_oc23_watermark'], 100, 100);
+            $data['thumb'] = $this->model_tool_image->resize($data['myskladoc23_watermark'], 100, 100);
         }
         else {
             $data['thumb'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
         }
 
-        if (isset($this->request->post['mysklad_oc23_order_status'])) {
-            $data['mysklad_oc23_order_status'] = $this->request->post['mysklad_oc23_order_status'];
+        if (isset($this->request->post['myskladoc23_order_status'])) {
+            $data['myskladoc23_order_status'] = $this->request->post['myskladoc23_order_status'];
         }
         else {
-            $data['mysklad_oc23_order_status'] = $this->config->get('mysklad_oc23_order_status');
+            $data['myskladoc23_order_status'] = $this->config->get('myskladoc23_order_status');
         }
 
-        if (isset($this->request->post['mysklad_oc23_order_currency'])) {
-            $data['mysklad_oc23_order_currency'] = $this->request->post['mysklad_oc23_order_currency'];
+        if (isset($this->request->post['myskladoc23_order_currency'])) {
+            $data['myskladoc23_order_currency'] = $this->request->post['myskladoc23_order_currency'];
         }
         else {
-            $data['mysklad_oc23_order_currency'] = $this->config->get('mysklad_oc23_order_currency');
+            $data['myskladoc23_order_currency'] = $this->config->get('myskladoc23_order_currency');
         }
 
-        if (isset($this->request->post['mysklad_oc23_order_notify'])) {
-            $data['mysklad_oc23_order_notify'] = $this->request->post['mysklad_oc23_order_notify'];
+        if (isset($this->request->post['myskladoc23_order_notify'])) {
+            $data['myskladoc23_order_notify'] = $this->request->post['myskladoc23_order_notify'];
         }
         else {
-            $data['mysklad_oc23_order_notify'] = $this->config->get('mysklad_oc23_order_notify');
+            $data['myskladoc23_order_notify'] = $this->config->get('myskladoc23_order_notify');
         }
 
         // Группы
@@ -293,7 +293,7 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
             );
         }
 
-        $this->template = 'extension/module/mysklad_oc23.tpl';
+        $this->template = 'extension/module/myskladoc23.tpl';
         $this->children = array(
             'common/header',
             'common/footer' 
@@ -303,14 +303,14 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
         $data['header'] = $this->load->controller('common/header');
         $data['column_left'] = $this->load->controller('common/column_left');
         $data['footer'] = $this->load->controller('common/footer');
-        $this->response->setOutput($this->load->view('extension/module/mysklad_oc23.tpl', $data));
+        $this->response->setOutput($this->load->view('extension/module/myskladoc23.tpl', $data));
 
         //$this->response->setOutput($this->render(), $this->config->get('config_compression'));
     }
 
     private function validate() {
 
-        if (!$this->user->hasPermission('modify', 'extension/module/mysklad_oc23')) {
+        if (!$this->user->hasPermission('modify', 'extension/module/myskladoc23')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
 
@@ -326,16 +326,16 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
     public function modeCheckauth() {
 
         // Проверяем включен или нет модуль
-        if (!$this->config->get('mysklad_oc23_status')) {
+        if (!$this->config->get('myskladoc23_status')) {
             echo "failure\n";
-            echo "mysklad_oc23 module OFF";
+            echo "myskladoc23 module OFF";
             exit;
         }
 
         // Разрешен ли IP
-        if ($this->config->get('mysklad_oc23_allow_ip') != '') {
+        if ($this->config->get('myskladoc23_allow_ip') != '') {
             $ip = $_SERVER['REMOTE_ADDR'];
-            $allow_ips = explode("\r\n", $this->config->get('mysklad_oc23_allow_ip'));
+            $allow_ips = explode("\r\n", $this->config->get('myskladoc23_allow_ip'));
 
             if (!in_array($ip, $allow_ips)) {
                 echo "failure\n";
@@ -345,12 +345,12 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
         }
 
         // Авторизуем
-        if (($this->config->get('mysklad_oc23_username') != '') && (@$_SERVER['PHP_AUTH_USER'] != $this->config->get('mysklad_oc23_username'))) {
+        if (($this->config->get('myskladoc23_username') != '') && (@$_SERVER['PHP_AUTH_USER'] != $this->config->get('myskladoc23_username'))) {
             echo "failure\n";
             echo "error login";
         }
 
-        if (($this->config->get('mysklad_oc23_password') != '') && (@$_SERVER['PHP_AUTH_PW'] != $this->config->get('mysklad_oc23_password'))) {
+        if (($this->config->get('myskladoc23_password') != '') && (@$_SERVER['PHP_AUTH_PW'] != $this->config->get('myskladoc23_password'))) {
             echo "failure\n";
 
             echo "error password";
@@ -359,13 +359,13 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
 
         echo "success\n";
         echo "key\n";
-        echo md5($this->config->get('mysklad_oc23_password')) . "\n";
+        echo md5($this->config->get('myskladoc23_password')) . "\n";
     }
 
     public function manualImport() {
-        $this->load->language('extension/module/mysklad_oc23');
+        $this->load->language('extension/module/myskladoc23');
 
-        $cache = DIR_CACHE . 'mysklad_oc23/';
+        $cache = DIR_CACHE . 'myskladoc23/';
         $json = array();
 
         if (!empty($this->request->files['file']['name'])) {
@@ -426,23 +426,23 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
 
     public function modeCatalogInit($echo = true) {
 
-        $this->load->model('tool/mysklad_oc23');
+        $this->load->model('tool/myskladoc23');
 
         // чистим кеш, убиваем старые данные
         $this->cleanCacheDir();
 
         // Проверяем естль ли БД для хранения промежуточных данных.
-        $this->model_tool_mysklad_oc23->checkDbSheme();
+        $this->model_tool_myskladoc23->checkDbSheme();
 
         // Очищаем таблицы
-        $this->model_tool_mysklad_oc23->flushDb(array(
-            'product'       => $this->config->get('mysklad_oc23_flush_product'),
-            'category'      => $this->config->get('mysklad_oc23_flush_category'),
-            'manufacturer'  => $this->config->get('mysklad_oc23_flush_manufacturer'),
-            'attribute'     => $this->config->get('mysklad_oc23_flush_attribute'),
-            'full_log'      => $this->config->get('mysklad_oc23_full_log'),
-            'apply_watermark'   => $this->config->get('mysklad_oc23_apply_watermark'),
-            'quantity'      => $this->config->get('mysklad_oc23_flush_quantity')
+        $this->model_tool_myskladoc23->flushDb(array(
+            'product'       => $this->config->get('myskladoc23_flush_product'),
+            'category'      => $this->config->get('myskladoc23_flush_category'),
+            'manufacturer'  => $this->config->get('myskladoc23_flush_manufacturer'),
+            'attribute'     => $this->config->get('myskladoc23_flush_attribute'),
+            'full_log'      => $this->config->get('myskladoc23_full_log'),
+            'apply_watermark'   => $this->config->get('myskladoc23_apply_watermark'),
+            'quantity'      => $this->config->get('myskladoc23_flush_quantity')
         ));
 
         $limit = 100000 * 1024;
@@ -467,13 +467,13 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
             return;
         }
 
-        if ($this->request->cookie['key'] != md5($this->config->get('mysklad_oc23_password'))) {
+        if ($this->request->cookie['key'] != md5($this->config->get('myskladoc23_password'))) {
             echo "failure\n";
             echo "Session error";
             return;
         }
 
-        $cache = DIR_CACHE . 'mysklad_oc23/';
+        $cache = DIR_CACHE . 'myskladoc23/';
 
         // Проверяем на наличие имени файла
         if (isset($this->request->get['filename'])) {
@@ -525,7 +525,7 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
 
     public function modeImport($manual = false) {
 
-        $cache = DIR_CACHE . 'mysklad_oc23/';
+        $cache = DIR_CACHE . 'myskladoc23/';
 
         if ($manual) {
             $filename = $manual;
@@ -541,20 +541,20 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
             return 0;
         }
 
-        $this->load->model('tool/mysklad_oc23');
+        $this->load->model('tool/myskladoc23');
 
         // Определяем текущую локаль
-        $language_id = $this->model_tool_mysklad_oc23->getLanguageId($this->config->get('config_language'));
+        $language_id = $this->model_tool_myskladoc23->getLanguageId($this->config->get('config_language'));
 
         if (strpos($filename, 'import') !== false) {
 
-            $this->model_tool_mysklad_oc23->parseImport($filename, $language_id);
+            $this->model_tool_myskladoc23->parseImport($filename, $language_id);
 
-            if ($this->config->get('mysklad_oc23_fill_parent_cats')) {
-                $this->model_tool_mysklad_oc23->fillParentsCategories();
+            if ($this->config->get('myskladoc23_fill_parent_cats')) {
+                $this->model_tool_myskladoc23->fillParentsCategories();
             }
 
-            if ($this->config->get('mysklad_oc23_seo_url')) {
+            if ($this->config->get('myskladoc23_seo_url')) {
                 $this->load->model('extension/module/deadcow_seo');
                 $this->model_module_deadcow_seo->generateCategories($this->config->get('deadcow_seo_categories_template'), 'Russian');
                 $this->model_module_deadcow_seo->generateProducts($this->config->get('deadcow_seo_products_template'), 'Russian');
@@ -567,8 +567,8 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
 
         }
         else if (strpos($filename, 'offers') !== false) {
-            $mysklad_oc23_price_type = $this->config->get('mysklad_oc23_price_type');
-            $this->model_tool_mysklad_oc23->parseOffers($filename, $mysklad_oc23_price_type, $language_id);
+            $myskladoc23_price_type = $this->config->get('myskladoc23_price_type');
+            $this->model_tool_myskladoc23->parseOffers($filename, $myskladoc23_price_type, $language_id);
 
             if (!$manual) {
                 echo "success\n";
@@ -589,22 +589,22 @@ class Controllerextensionmodulemyskladoc23 extends Controller {
             return;
         }
 
-        if ($this->request->cookie['key'] != md5($this->config->get('mysklad_oc23_password'))) {
+        if ($this->request->cookie['key'] != md5($this->config->get('myskladoc23_password'))) {
             echo "failure\n";
             echo "Session error";
             return;
         }
 
-        $this->load->model('tool/mysklad_oc23');
+        $this->load->model('tool/myskladoc23');
 
-        $orders = $this->model_tool_mysklad_oc23->queryOrders(array(
-            'from_date'     => $this->config->get('mysklad_oc23_order_date')
-        ,'exchange_status'  => $this->config->get('mysklad_oc23_order_status_to_exchange')
-        ,'new_status'   => $this->config->get('mysklad_oc23_order_status')
-        ,'notify'       => $this->config->get('mysklad_oc23_order_notify')
-        ,'currency'     => $this->config->get('mysklad_oc23_order_currency') ? $this->config->get('mysklad_oc23_order_currency') : 'руб.'
+        $orders = $this->model_tool_myskladoc23->queryOrders(array(
+            'from_date'     => $this->config->get('myskladoc23_order_date')
+        ,'exchange_status'  => $this->config->get('myskladoc23_order_status_to_exchange')
+        ,'new_status'   => $this->config->get('myskladoc23_order_status')
+        ,'notify'       => $this->config->get('myskladoc23_order_notify')
+        ,'currency'     => $this->config->get('myskladoc23_order_currency') ? $this->config->get('myskladoc23_order_currency') : 'руб.'
         ));
-        var_dump($orders);
+        
  
         echo iconv('utf-8', 'cp1251', $orders);
     }
@@ -615,26 +615,26 @@ public function modeOrdersChangeStatus(){
             return;
         }
 
-        if ($this->request->cookie['key'] != md5($this->config->get('mysklad_oc23_password'))) {
+        if ($this->request->cookie['key'] != md5($this->config->get('myskladoc23_password'))) {
             echo "failure\n";
             echo "Session error";
             return;
         }
 
-        $this->load->model('tool/mysklad_oc23');
+        $this->load->model('tool/myskladoc23');
 
-        $result = $this->model_tool_mysklad_oc23->queryOrdersStatus(array(
-            'from_date'         => $this->config->get('mysklad_oc23_order_date'),
-            'exchange_status'   => $this->config->get('mysklad_oc23_order_status_to_exchange'),
-            'new_status'        => $this->config->get('mysklad_oc23_order_status'),
-            'notify'            => $this->config->get('mysklad_oc23_order_notify')
+        $result = $this->model_tool_myskladoc23->queryOrdersStatus(array(
+            'from_date'         => $this->config->get('myskladoc23_order_date'),
+            'exchange_status'   => $this->config->get('myskladoc23_order_status_to_exchange'),
+            'new_status'        => $this->config->get('myskladoc23_order_status'),
+            'notify'            => $this->config->get('myskladoc23_order_notify')
         ));
 
         if($result){
             $this->load->model('setting/setting');
-            $config = $this->model_setting_setting->getSetting('mysklad_oc23');
-            $config['mysklad_oc23_order_date'] = date('Y-m-d H:i:s');
-            $this->model_setting_setting->editSetting('mysklad_oc23', $config);
+            $config = $this->model_setting_setting->getSetting('myskladoc23');
+            $config['myskladoc23_order_date'] = date('Y-m-d H:i:s');
+            $this->model_setting_setting->editSetting('myskladoc23', $config);
         }
 
         if($result)
@@ -648,23 +648,23 @@ public function modeOrdersChangeStatus(){
     private function cleanCacheDir() {
 
         // Проверяем есть ли директория
-        if (file_exists(DIR_CACHE . 'mysklad_oc23')) {
-            if (is_dir(DIR_CACHE . 'mysklad_oc23')) {
-                return $this->cleanDir(DIR_CACHE . 'mysklad_oc23/');
+        if (file_exists(DIR_CACHE . 'myskladoc23')) {
+            if (is_dir(DIR_CACHE . 'myskladoc23')) {
+                return $this->cleanDir(DIR_CACHE . 'myskladoc23/');
             }
             else {
-                unlink(DIR_CACHE . 'mysklad_oc23');
+                unlink(DIR_CACHE . 'myskladoc23');
             }
         }
 
-        mkdir (DIR_CACHE . 'mysklad_oc23');
+        mkdir (DIR_CACHE . 'myskladoc23');
 
         return 0;
     }
 
     private function checkUploadFileTree($path, $curDir = null) {
 
-        if (!$curDir) $curDir = DIR_CACHE . 'mysklad_oc23/';
+        if (!$curDir) $curDir = DIR_CACHE . 'myskladoc23/';
 
         foreach (explode('/', $path) as $name) {
 
