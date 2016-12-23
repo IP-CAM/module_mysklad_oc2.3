@@ -286,8 +286,6 @@ error_reporting(E_ALL ^E_NOTICE);
         alert(json['error']);
       }
     }
-    
-
   });
   //--></script>
 <script type="text/javascript"><!--
